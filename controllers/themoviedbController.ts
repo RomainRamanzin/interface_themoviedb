@@ -76,6 +76,71 @@ export class ThemoviedbController {
 
   /**
    * @swagger
+   * /movie/:movie_id/recommandations:
+   *   get:
+   *     summary: Récupérer les films en recommandation
+   *     tags: [TheMovieDB]
+   *     parameters:
+   *       - in: path
+   *         name: movie_id
+   *         required: true
+   *         description: Identifiant du film pour lequel on veut récupérer les recommandations
+   *         schema:
+   *           type: number
+   *       - in: query
+   *         name: language
+   *         required: false
+   *         description: Langue des données à récupérer
+   *         schema:
+   *           type: string
+   *       - in: query
+   *         name: page
+   *         required: false
+   *         description: Numéro de la page à récupérer
+   *         schema:
+   *           type: number
+   *     responses:
+   *       200:
+   *         description: Récupération des films populaires
+   *       400:
+   *         description: Erreur lors de la récupération des films populaires
+   */
+  public async getRecommandationMovies(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    const language = req.query.language || "fr-FR";
+    const page = req.query.page || 1;
+    const movie_id = req.params.movie_id;
+
+    try {
+      const response: AxiosResponse = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movie_id}/recommendations?api_key=${this.API_KEY}&language=${language}&page=${page}`
+      );
+
+      const minimalData: MinimalMovieData[] = response.data.results.map(
+        (movie: any) => {
+          return {
+            id: movie.id,
+            title: movie.title,
+            poster_path: movie.poster_path,
+            release_date: movie.release_date,
+            overview: movie.overview,
+            vote_average: movie.vote_average,
+            vote_count: movie.vote_count,
+          };
+        }
+      );
+
+      res.json(minimalData);
+    } catch (error) {
+      next(new ApiError("Erreur lors de la récupération des films recommandés"));
+    }
+  }
+
+  /**
+   * @swagger
    * /movies/search:
    *   get:
    *     summary: Rechercher un film

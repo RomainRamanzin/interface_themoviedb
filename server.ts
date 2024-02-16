@@ -30,6 +30,11 @@ app.get("/movies/popular", async (req: Request, res: Response, next: NextFunctio
     await themoviedbController.getPopularMovies(req, res, next);
 });
 
+// route pour récupérer les films populaires
+app.get("/movie/:movie_id/recommandations", async (req: Request, res: Response, next: NextFunction) => {
+  await themoviedbController.getRecommandationMovies(req, res, next);
+});
+
 // route pour rechercher un film
 app.get("/movies/search", async (req: Request, res: Response, next: NextFunction) => {
     await themoviedbController.searchMovies(req, res, next);
