@@ -15,7 +15,7 @@ Interface API en Typescript pour récupérer des informations sur des films et d
 - Insérez votre clée API dans le fichier `.env`
 
 ## Lancement du serveur 
-- npm start
+- `npm start`
 - Dans sa configuration de base le serveur se lance sous `localhost:3000`
 - Vous pouvez tester le serveur via l'endpoint `localhost:3000/test` qui devrait renvoyer un "Hello World"
 
