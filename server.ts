@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import { errorHandler } from "./middlewares/errorHandler";
-import logger from "./middlewares/logger";
+import { logger } from "./middlewares/logger";
 import { logResponse } from "./middlewares/logResponse";
 import { logRequest } from "./middlewares/logRequest";
 import dotenv from 'dotenv';
@@ -16,14 +16,14 @@ const app = express();
 
 const themoviedbController = new ThemoviedbController(API_KEY);
 
-app.use(errorHandler);
-app.use(logRequest);
-app.use(logResponse);
 
 // Route de test
 app.get("/test", (req: Request, res: Response) => {
   res.send("Hello World");
 });
+
+app.use(logRequest);
+app.use(logResponse);
 
 // route pour récupérer les films populaires
 app.get("/movies/popular", async (req: Request, res: Response, next: NextFunction) => {
@@ -43,6 +43,8 @@ app.get("/movies/search", async (req: Request, res: Response, next: NextFunction
 // Documentation Swagger
 const specs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+app.use(errorHandler);
 
 // Lancement du serveur
 app.listen(PORT, () => {
