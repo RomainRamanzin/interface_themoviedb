@@ -37,7 +37,7 @@ Interface API en Typescript pour récupérer des informations sur des films et d
 
 ### Récupérer des recommandations de film par rapport à un autre film :
 - Méthode GET
-- URL : `localhost:3000/movies/{movie_id}/search`
+- URL : `localhost:3000/movies/{movie_id}/recommandations`
 - Paramètres : 
 1. `movie_id` (obligatoire) : l'identifiant du film
 2. `language` : la langue de la recherche (par défaut fr-FR) 
