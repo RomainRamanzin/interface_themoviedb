@@ -101,9 +101,9 @@ export class ThemoviedbController {
    *           type: number
    *     responses:
    *       200:
-   *         description: Récupération des films populaires
+   *         description: Récupération des films recommandés
    *       400:
-   *         description: Erreur lors de la récupération des films populaires
+   *         description: Erreur lors de la récupération des films recommandés
    */
   public async getRecommandationMovies(
     req: Request,
