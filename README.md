@@ -15,22 +15,38 @@ Interface API en Typescript pour récupérer des informations sur des films et d
 - Insérez votre clée API dans le fichier `.env`
 
 ## Lancement du serveur 
-- `npm start`
-- Vous pouvez désormais communiquer avec l'API à l'adresse `localhost:3000`
+- npm start
+- Dans sa configuration de base le serveur se lance sous `localhost:3000`
+- Vous pouvez tester le serveur via l'endpoint `localhost:3000/test` qui devrait renvoyer un "Hello World"
 
 ## Exemple d'utilisation
-- Rechercher un film via son titre :
-<!-- ```bash
-localhost:3000/movie/:title
-``` -->
+### Rechercher un film via son titre :
+- Méthode GET
+- URL : `localhost:3000/movies/search`
+- Paramètres : 
+1. `query` (obligatoire) : le titre a rechercher
+2. `language` : la langue de la recherche (par défaut fr-FR) 
+3. `page` : la page a récupérer
 
-- Récupérer les films populaires du moment :
+### Récupérer les films populaires du moment :
+- Méthode GET
+- URL : `localhost:3000/movies/popular`
+- Paramètres : 
+1. `language` : la langue de la recherche (par défaut fr-FR) 
+2. `page` : la page a récupérer
 
-- Récupérer des recommandations de film par rapport à un autre film :
+### Récupérer des recommandations de film par rapport à un autre film :
+- Méthode GET
+- URL : `localhost:3000/movies/{movie_id}/search`
+- Paramètres : 
+1. `movie_id` (obligatoire) : l'identifiant du film
+2. `language` : la langue de la recherche (par défaut fr-FR) 
+3. `page` : la page a récupérer
 
 
 ## Documentation complète
 Vous pouvez retrouver la documentation complète via l'url suivant : `localhost:3000/api-docs`
+![swagger_capture](public/swagger-capture.png)
 
 ## Contributeurs
 Projet réalisé en groupe :
