@@ -30,6 +30,11 @@ app.get("/movies/popular", async (req: Request, res: Response, next: NextFunctio
     await themoviedbController.getPopularMovies(req, res, next);
 });
 
+// route pour rechercher un film
+app.get("/movies/search", async (req: Request, res: Response, next: NextFunction) => {
+    await themoviedbController.searchMovies(req, res, next);
+});
+
 // Documentation Swagger
 const specs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
