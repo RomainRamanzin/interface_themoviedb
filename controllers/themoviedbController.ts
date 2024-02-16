@@ -76,7 +76,7 @@ export class ThemoviedbController {
 
   /**
    * @swagger
-   * /movie/:movie_id/recommandations:
+   * /movie/{movie_id}/recommandations:
    *   get:
    *     summary: Récupérer les films en recommandation
    *     tags: [TheMovieDB]
